@@ -1,2 +1,4 @@
+include ':navhideshowdemo'
+include ':nav-fragment-hideshow'
 include ':app'
 rootProject.name = "HSNavHostFragment"
