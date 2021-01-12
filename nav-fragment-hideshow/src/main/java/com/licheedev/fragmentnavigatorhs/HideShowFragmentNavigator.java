@@ -47,7 +47,6 @@ public class HideShowFragmentNavigator extends FragmentNavigator {
     private final Context mContext;
     private final FragmentManager mFragmentManager;
     private final int mContainerId;
-    private final ArrayDeque<Integer> mBackStack;
 
     public HideShowFragmentNavigator(@NonNull Context context, @NonNull FragmentManager manager,
         int containerId) {
@@ -56,16 +55,7 @@ public class HideShowFragmentNavigator extends FragmentNavigator {
         mFragmentManager = manager;
         mContainerId = containerId;
 
-        ArrayDeque<Integer> temp;
-        try {
-            Field backStack = FragmentNavigator.class.getDeclaredField("mBackStack");
-            backStack.setAccessible(true);
-            temp = (ArrayDeque<Integer>) backStack.get(this);
-        } catch (Exception e) {
-            e.printStackTrace(); // 不可达
-            temp = null;
-        }
-        mBackStack = temp;
+ 
     }
 
     @Nullable
@@ -131,6 +121,16 @@ public class HideShowFragmentNavigator extends FragmentNavigator {
         /////////////////////////////////////////////
 
         final @IdRes int destId = destination.getId();
+
+        ArrayDeque<Integer> mBackStack=null;
+        try {
+            Field backStack = FragmentNavigator.class.getDeclaredField("mBackStack");
+            backStack.setAccessible(true);
+            mBackStack = (ArrayDeque<Integer>) backStack.get(this);
+        } catch (Exception e) {
+            e.printStackTrace(); // 不可达
+        }
+        
         final boolean initialNavigation = mBackStack.isEmpty();
         // TODO Build first class singleTop behavior for fragments
         final boolean isSingleTopReplacement = navOptions != null

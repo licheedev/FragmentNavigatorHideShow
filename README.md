@@ -11,7 +11,7 @@ allprojects {
 }
 
   dependencies {
-        implementation 'com.licheedev:nav-fragment-hideshow:1.0.0'
+        implementation 'com.licheedev:nav-fragment-hideshow:1.0.1'
 }
 ```
 

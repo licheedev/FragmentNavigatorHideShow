@@ -6,7 +6,6 @@ import androidx.navigation.fragment.findNavController
 import com.licheedev.fragmentnavigatorhs.ReplaceFragment
 import kotlinx.android.synthetic.main.fragment_one.*
 
-@ReplaceFragment
 class OneFragment : BaseFragment() {
 
     override val layoutId: Int
